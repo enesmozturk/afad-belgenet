@@ -1,31 +1,32 @@
 FILE="/usr/local/signNativeOsService/signNativeOsService.jar"
-HASH="13b2bb6e3eaa7cfe5b5d14c4fb476fedc53a2541"
+HASH="2f6e89c6e5d788551e224ae7e9a0f02fa5e7dfb7"
 SSH_COMMAND=$(echo "$HASH $FILE" | sha1sum -c | grep Tamam | wc -l)
 
 hash=$(sha1sum $FILE |cut -d ' ' -f 1)
 if [ "$SSH_COMMAND" -eq "1" ]
 	then
-		echo "OK. Belgenet versiyon 1.0.44. $hash "
+		echo "OK. Belgenet versiyon 1.0.47. $hash "
 		exit 0
 	fi
 
 cd /tmp/afad-belgenet
-tar -xzf signNativeOsService.tar.gz
-
+unzip signNativeOsService_Linux_1.0.47.zip
 cd signNativeOsService/bin/systemctl/
+chmod 777 install.sh
 systemctl stop turksat-imza
 bash install.sh
 cd /tmp
 rm -rf /tmp/afad-belgenet
 FILE="/usr/local/signNativeOsService/signNativeOsService.jar"
-HASH="13b2bb6e3eaa7cfe5b5d14c4fb476fedc53a2541"
+HASH="2f6e89c6e5d788551e224ae7e9a0f02fa5e7dfb7"
 SSH_COMMAND=$(echo "$HASH $FILE" | sha1sum -c | grep Tamam | wc -l)
 
 hash=$(sha1sum $FILE |cut -d ' ' -f 1)
 if [ "$SSH_COMMAND" -eq "1" ]
 	then
-		echo "OK. Belgenet versiyon 1.0.44. $hash "
+		echo "OK. Belgenet versiyon 1.0.47. $hash "
 	else 
 	echo "Warning.  Kurulum basarisiz. "
 	fi
+
 
